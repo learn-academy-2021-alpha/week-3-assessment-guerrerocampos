@@ -28,7 +28,7 @@
           }
         }
 
-        drawCard = () => {
+        drawCard = (props) => {
           const { hand } = this.state
           let suit = ["❤️", "♦️", "♠️", "♣️"]
           let rank = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
@@ -42,18 +42,16 @@
           }
         }
 
-        shuffle = () => {
+        shuffle = (props) => {
           this.setState({ hand: [] })
         }
 
         render(){
           return(
             <>
+            
               <h1>Draw a Card</h1>
-              <Card
-                drawCard={ this.drawCard }
-                shuffle={ this.shuffle }
-              />
+              <Card drawCard={ this.drawCard } shuffle={ this.shuffle } hand= {this.state.hand}/>
             </>
           )
         }
@@ -75,10 +73,11 @@
           }
           return(
             <>
-              <button onClick={}>
+            
+              <button onClick={this.props.drawCard}>
                 Click to Draw a Card
               </button>
-              <button onClick={ shuffle }>
+              <button onClick={ this.props.shuffle }>
                 Return Cards and Shuffle Deck
               </button>
               <div style={ handStyles }>
